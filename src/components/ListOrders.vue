@@ -1,5 +1,6 @@
 <script setup>
 import { ref } from 'vue'
+import OrderDetails from './OrderDetails.vue';
 
 const DUMMY_ORDERS = [
   {
@@ -36,29 +37,39 @@ const props = defineProps({
   storeCode: String
 })
 
+const selectedOrder = ref(null);
+
+const handleOrderClick = (order) => {
+  selectedOrder.value = order.code;
+}
+
+const handleGoBack = () => {
+  selectedOrder.value = null;
+};
 </script>
 
 <template>
-  <h2>Pedidos para a loja: {{ storeCode }}</h2>
-  <a href="/">Voltar</a>
-  <ul>
-    <li v-for="order in DUMMY_ORDERS" :key="order.id">
-      <!-- <p>{{ order.name }}</p>
-      <p>{{ order.phone }}</p>
-      <p>{{ order.email }}</p>
-      <p>{{ order.cpf }}</p> -->
-      <a href="{{ order.code }}">{{ order.code }}</a>
-      <p>{{ order.status }}</p>
-      <p>{{ order.price }}</p>
-      <!-- <p>{{ order.userId }}</p>
-      <p>{{ order.storeId }}</p> -->
-      <p>{{ order.createdAt }}</p>
-      <p>{{ order.updatedAt }}</p>
-    </li>
-  </ul>
+  <div v-if="!selectedOrder">
+    <h2>Pedidos para a loja: {{ storeCode }}</h2>
+    <ul>
+      <li v-for="order in DUMMY_ORDERS" :key="order.id">
+        <!-- <p>{{ order.name }}</p>
+        <p>{{ order.phone }}</p>
+        <p>{{ order.email }}</p>
+        <p>{{ order.cpf }}</p> -->
+        <p @click="handleOrderClick(order)" style="cursor: pointer;">{{ order.code }}</p>
+        <p>{{ order.status }}</p>
+        <p>{{ order.price }}</p>
+        <!-- <p>{{ order.userId }}</p>
+        <p>{{ order.storeId }}</p> -->
+        <p>{{ order.createdAt }}</p>
+        <p>{{ order.updatedAt }}</p>
+      </li>
+    </ul>
+  </div>
 
-  <div class="card">
-    
+  <div class="card" v-if="selectedOrder">
+    <OrderDetails :orderCode="selectedOrder" :storeCode="storeCode" @goBack="handleGoBack" />
   </div>
 </template>
 

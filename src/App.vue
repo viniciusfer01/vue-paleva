@@ -16,7 +16,9 @@ const showOrders = () => {
 
 <template>
   <div>
-    <h1>PaLevá - Kitchen Edition</h1>
+    <a href="/">
+      <h1>PaLevá - Kitchen Edition</h1>
+    </a>
     <div v-if="!showOrdersComponent">
       <input type="text" placeholder="Search for orders from store..." v-model="storeCode"/>
       <button @click="showOrders">Show Orders</button>
