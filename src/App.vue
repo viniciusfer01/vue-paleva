@@ -20,8 +20,8 @@ const showOrders = () => {
       <h1>PaLevá - Kitchen Edition</h1>
     </a>
     <div v-if="!showOrdersComponent">
-      <input type="text" placeholder="Search for orders from store..." v-model="storeCode"/>
-      <button @click="showOrders">Show Orders</button>
+      <input type="text" placeholder="Procurar por pedidos da loja..." v-model="storeCode"/>
+      <button @click="showOrders">Mostrar pedidos</button>
     </div>
     <ListOrders v-if="showOrdersComponent" :storeCode="storeCode"/>
   </div>

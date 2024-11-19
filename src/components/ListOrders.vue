@@ -16,6 +16,7 @@ const handleOrderClick = (order) => {
 
 const handleGoBack = () => {
   selectedOrder.value = null;
+  fetchOrders();
 };
 
 const fetchOrders = async () => {
