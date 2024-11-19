@@ -57,7 +57,7 @@ const handleGoBack = () => {
         <p>{{ order.phone }}</p>
         <p>{{ order.email }}</p>
         <p>{{ order.cpf }}</p> -->
-        <p @click="handleOrderClick(order)" style="cursor: pointer;">{{ order.code }}</p>
+        <p class="link" @click="handleOrderClick(order)" style="cursor: pointer;">{{ order.code }}</p>
         <p>{{ order.status }}</p>
         <p>{{ order.price }}</p>
         <!-- <p>{{ order.userId }}</p>
@@ -74,5 +74,12 @@ const handleGoBack = () => {
 </template>
 
 <style scoped>
-
+  .link {
+    color: blue;
+  }
+  .card {
+    border: 1px solid black;
+    border-radius: 2rem;
+    padding: 1rem;
+  }
 </style>
