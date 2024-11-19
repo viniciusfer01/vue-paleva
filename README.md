@@ -1,12 +1,27 @@
 # Vue 3 + Vite
 
-This template should help get you started developing with Vue 3 in Vite. The template uses Vue 3 `<script setup>` SFCs, check out the [script setup docs](https://v3.vuejs.org/api/sfc-script-setup.html#sfc-script-setup) to learn more.
-
-Learn more about IDE Support for Vue in the [Vue Docs Scaling up Guide](https://vuejs.org/guide/scaling-up/tooling.html#ide-support).
-
 ## How to run
 ```
 cd vue-paleva
 npm install
 npm run dev
 ```
+
+## How the app works
+
+Follow the [Paleva rails app README](https://github.com/viniciusfer01/paleva) first,
+then with the rails app running, execute the vuejs app, type a valid store code, and check the orders from that store. You can also check an order's details and change its status.
+
+## Portuguese
+
+## Como executar
+```
+cd vue-paleva
+npm install
+npm run dev
+```
+
+## Como o aplicativo funciona
+
+Siga primeiro o README da aplicação [Paleva Rails](https://github.com/viniciusfer01/paleva), depois, com a aplicação Rails em execução, execute o aplicativo Vue.js, digite um código de loja válido e verifique os pedidos dessa loja. Você também pode verificar os detalhes de um pedido e alterar seu status.
+  
