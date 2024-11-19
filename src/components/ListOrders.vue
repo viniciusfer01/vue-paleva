@@ -2,37 +2,6 @@
 import { ref, onMounted } from 'vue'
 import OrderDetails from './OrderDetails.vue';
 
-// const DUMMY_ORDERS = [
-//   {
-//     id: 1,
-//     name: 'Zezin',
-//     phone: '123-456-7890',
-//     email: 'dummy@email.com',
-//     cpf: '123.456.789-00',
-//     status: 'pending',
-//     code: 'ABC123VS',
-//     price: 50.00,
-//     userId: 1,
-//     storeId: 1,
-//     createdAt: '2021-09-01T12:00:00',
-//     updatedAt: '2021-09-01T12:00:00',
-//   },
-//   {
-//     id: 2,
-//     name: 'Jorgin',
-//     phone: '123-456-7890',
-//     email: 'Jorgin@email.com',
-//     cpf: '123.456.789-00',
-//     status: 'pending',
-//     code: 'ABC456VS',
-//     price: 30.00,
-//     userId: 2,
-//     storeId: 1,
-//     createdAt: '2021-09-01T12:00:00',
-//     updatedAt: '2021-09-01T12:00:00',
-//   },
-// ]
-
 const orders = ref([]);
 const selectedOrder = ref(null);
 
@@ -55,7 +24,6 @@ const fetchOrders = async () => {
     }
     const data = await response.json();
     orders.value = data;
-    console.log('orders:', orders.value);
   } catch (error) {
     console.error('There was a problem with the fetch operation:', error);
   }

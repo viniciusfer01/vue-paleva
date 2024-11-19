@@ -1,4 +1,5 @@
 <script setup>
+import { ref, onMounted } from 'vue';
 import { defineProps } from 'vue'
 
 const props = defineProps({
@@ -12,34 +13,38 @@ const handleGoBack = () => {
   emit('goBack');
 };
 
-const orderDetails = {
-    id: 1,
-    name: 'Zezin',
-    phone: '123-456-7890',
-    email: 'dummy@email.com',
-    cpf: '123.456.789-00',
-    status: 'pending',
-    code: 'ABC123VS',
-    price: 50.00,
-    userId: 1,
-    storeId: 1,
-    createdAt: '2021-09-01T12:00:00',
-    updatedAt: '2021-09-01T12:00:00',
-}
+const orderDetails = ref(null);
+
+const fetchOrderDetails = async () => {
+  try {
+    const response = await fetch(`http://localhost:3000/api/orders/${props.orderCode}?code=${props.storeCode}`);
+    if (!response.ok) {
+      throw new Error('Network response was not ok');
+    }
+    const data = await response.json();
+    orderDetails.value = data;
+  } catch (error) {
+    console.error('There was a problem with the fetch operation:', error);
+  }
+};
+
+onMounted(() => {
+  fetchOrderDetails();
+});
 </script>
 
 <template>
-  <div>
+  <div v-if="orderDetails">
     <h2>Order Details for: {{ orderCode }}</h2>
     <p>Store: {{ storeCode }}</p>
-    <p>Name: {{ orderDetails.name }}</p>
-    <p>Phone: {{ orderDetails.phone }}</p>
-    <p>Email: {{ orderDetails.email }}</p>
-    <p>CPF: {{ orderDetails.cpf }}</p>
-    <p>Status: {{ orderDetails.status }}</p>
-    <p>Price: {{ orderDetails.price }}</p>
-    <p>Created At: {{ orderDetails.createdAt }}</p>
-    <p>Updated At: {{ orderDetails.updatedAt }}</p>
+    <p>Name: {{ orderDetails.order.name }}</p>
+    <p>Phone: {{ orderDetails.order.phone }}</p>
+    <p>Email: {{ orderDetails.order.email }}</p>
+    <p>CPF: {{ orderDetails.order.cpf }}</p>
+    <p>Status: {{ orderDetails.order.status }}</p>
+    <p>Price: {{ orderDetails.order.price }}</p>
+    <p>Created At: {{ orderDetails.order.created_at }}</p>
+    <p>Updated At: {{ orderDetails.order.updated_at }}</p>
     <button @click="handleGoBack">Back to Orders</button>
   </div>
 </template>
